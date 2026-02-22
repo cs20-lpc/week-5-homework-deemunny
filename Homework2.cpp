@@ -25,14 +25,14 @@ bool hasCycle(Node* head) {
                 fast = fast->next;
                 ++index;
             }
-            std::cout << "Loop starts at index " << index << " ";
+            // std::cout << "Loop starts at index " << index << " ";
 
             while (slow != fast->next) {
                 fast = fast->next;
                 ++index;
             }
 
-            std::cout << "Loop pointer exists at index " << index << " ";
+            // std::cout << "Loop pointer exists at index " << index << " ";
 
             return true;
         }
