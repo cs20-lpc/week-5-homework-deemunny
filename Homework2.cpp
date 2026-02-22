@@ -7,14 +7,35 @@ struct Node {
 };
 
 // Floyd's cycle-finding algorithm (Tortoise and Hare)
+// i am confused. this is already implemented. We did draw this in class though on the whiteboard.
+// i added "detection" code, though how would we find where the misaligned pointer is? 
 bool hasCycle(Node* head) {
     if (!head) return false;
     Node* slow = head;
-    Node* fast = head->next;
+    Node* fast = head;
     while (fast && fast->next) {
-        if (slow == fast) return true;
         slow = slow->next;
         fast = fast->next->next;
+        
+        if (slow == fast) {
+            slow = head;
+            int index = 0;
+            while (slow != fast) {
+                slow = slow->next;
+                fast = fast->next;
+                ++index;
+            }
+            std::cout << "Loop starts at index " << index << " ";
+
+            while (slow != fast->next) {
+                fast = fast->next;
+                ++index;
+            }
+
+            std::cout << "Loop pointer exists at index " << index << " ";
+
+            return true;
+        }
     }
     return false;
 }
